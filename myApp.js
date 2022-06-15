@@ -1,9 +1,12 @@
 const express = require("express");
 const helmet = require("helmet");
 const app = express();
+app.use(helmet.hsts());
 app.use(helmet.ieNoOpen());
 app.use(helmet.noSniff());
 app.use(helmet.xssFilter());
+var ninetyDaysInSeconds = 90 * 24 * 60 * 60;
+app.use(helmet.hsts({ maxAge: ninetyDaysInSeconds, force: true }));
 app.use(helmet.frameguard({ action: "deny" }));
 app.use(helmet.hidePoweredBy());
 
