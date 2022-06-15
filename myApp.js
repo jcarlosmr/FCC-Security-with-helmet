@@ -1,6 +1,7 @@
 const express = require("express");
 const helmet = require("helmet");
 const app = express();
+app.use(helmet.noCache());
 app.use(helmet.dnsPrefetchControl());
 app.use(helmet.hsts());
 app.use(helmet.ieNoOpen());
